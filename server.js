@@ -8,6 +8,8 @@ app.use(express.json()); // this is a middleware that parses the body of the req
 
 app.get('/api/v1/chickens', ChickensController.getChickens);
 app.get('/api/v1/chickens/:id', ChickensController.getChickenById);
+app.post('/api/v1/chickens', ChickensController.createChicken);
+app.put('/api/v1/chickens/:id', ChickensController.replaceChicken);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

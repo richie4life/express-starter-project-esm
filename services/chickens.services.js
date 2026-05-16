@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import { ChickensRepository } from '../repositories/chickens.repository.js';
 
 export class ChickensServices {
@@ -15,9 +16,28 @@ export class ChickensServices {
 
     //createChicken
 
+    static createChicken = (newChicken) => {
+        console.log('\tChickensServices : createChicken()');
+        // create a unique id for the new chicken
+        newChicken.id = uuid(); // This will generate a unique id for the new chicken using the uuid library
+        return ChickensRepository.createChicken(newChicken); // This will call the createChicken method in the repository to add a new chicken to the list
+
+    };
+
     //replaceChicken
+
+    static replaceChicken = (id, replaceChicken) => {
+        console.log('\tChickensServices : replaceChicken()');
+
+        //  TODO: Do not let the client update the id of the chicken, we should use the existing id of the chicken to update it
+        replaceChicken.id = id; // This will ensure that the id of the chicken is not changed when we replace it
+        return ChickensRepository.replaceChicken(id,replaceChicken); // This will call the replaceChicken method in the repository to update the chicken
+    };
+
+
+
+    };
 
     //updateChicken
 
     //deleteChicken
-}

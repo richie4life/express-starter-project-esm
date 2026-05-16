@@ -1,4 +1,4 @@
-const CHICKENS = [
+let CHICKENS = [
     {
         id: '1',
         name: 'Mack',
@@ -41,7 +41,23 @@ export class ChickensRepository {
 
     //createChicken
 
+    static createChicken = (newChicken) => {
+        console.log('\t\tChickensRepository : createChicken()');
+
+        CHICKENS.push(newChicken);
+        return newChicken;
+    }
+
     //replaceChicken
+
+    static replaceChicken = (id, replaceChicken) => {
+        console.log('\t\tChickensRepository : replaceChicken()');
+
+        //TODO: Replace dhicken in DB
+        CHICKENS = CHICKENS.filter(chicken => chicken.id !== id); // This will remove the existing chicken with the same id from the list
+        CHICKENS.push(replaceChicken); // This will add the updated chicken to the list
+        return replaceChicken;
+    }
 
     //updateChicken
 
