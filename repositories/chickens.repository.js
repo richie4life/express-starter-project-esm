@@ -34,8 +34,9 @@ export class ChickensRepository {
     //getChickenById
 
     static getChickenById = (id) => {
-        console.log('\t\tChickensRepository : getChickenById()');
-        return {};
+        console.log(`\t\tChickensRepository : getChickenById(${id})`);
+
+        return CHICKENS.find(chicken => chicken.id === id);
     }
 
     //createChicken

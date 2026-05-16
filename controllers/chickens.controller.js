@@ -13,9 +13,13 @@ export class ChickensController {
     //getChickenById
 
     static getChickenById = (req, res) => {
-        console.log('ChickensController : getChickenById()');
+        const id = req.params.id;
+        console.log(`ChickensController : getChickenById(${id})`);
 
-        const result = ChickensServices.getChickenById();
+        const result = ChickensServices.getChickenById(id);
+        if (!result) {
+            return res.status(404).json({ message: `Chicken with id ${id} not found` });
+        }
         res.status(200).json(result);
 
     };
