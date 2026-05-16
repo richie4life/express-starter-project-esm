@@ -5,4 +5,19 @@ export class ChickensServices {
         console.log('\tChickensServices : getChickens()');
         return ChickensRepository.getChickens();
     }
+
+    //getChickenById
+
+    static getChickenById = (id) => {
+        console.log('\tChickensServices : getChickenById()');
+        return ChickensRepository.getChickenById(id);
+    }
+
+    //createChicken
+
+    //replaceChicken
+
+    //updateChicken
+
+    //deleteChicken
 }

@@ -10,4 +10,22 @@ export class ChickensController {
 
     };
 
+    //getChickenById
+
+    static getChickenById = (req, res) => {
+        console.log('ChickensController : getChickenById()');
+
+        const result = ChickensServices.getChickenById();
+        res.status(200).json(result);
+
+    };
+
+    //createChicken
+
+    //replaceChicken
+
+    //updateChicken
+
+    //deleteChicken
+
 }
