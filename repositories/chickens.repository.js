@@ -1,3 +1,5 @@
+import { logger } from '../utils/logger.js';
+
 let CHICKENS = [
     {
         id: '1',
@@ -27,14 +29,14 @@ let CHICKENS = [
 
 export class ChickensRepository {
     static getChickens = () => {
-        console.log('\t\tChickensRepository : getChickens()');
+        logger.debug('\t\tChickensRepository : getChickens()');
         return CHICKENS;
     }
 
     //getChickenById
 
     static getChickenById = (id) => {
-        console.log(`\t\tChickensRepository : getChickenById(${id})`);
+        logger.debug(`\t\tChickensRepository : getChickenById(${id})`);
 
         return CHICKENS.find(chicken => chicken.id === id);
     }
@@ -42,7 +44,7 @@ export class ChickensRepository {
     //createChicken
 
     static createChicken = (newChicken) => {
-        console.log('\t\tChickensRepository : createChicken()');
+        logger.debug('\t\tChickensRepository : createChicken()');
 
         CHICKENS.push(newChicken);
         return newChicken;
@@ -51,7 +53,7 @@ export class ChickensRepository {
     //replaceChicken
 
     static replaceChicken = (id, replaceChicken) => {
-        console.log('\t\tChickensRepository : replaceChicken()');
+        logger.debug('\t\tChickensRepository : replaceChicken()');
 
         //TODO: Replace dhicken in DB
         CHICKENS = CHICKENS.filter(chicken => chicken.id !== id); // This will remove the existing chicken with the same id from the list
@@ -62,7 +64,7 @@ export class ChickensRepository {
     //updateChicken
 
     static updateChicken = (id, updateChicken) => {
-        console.log('\t\tChickensRepository : updateChicken()');
+        logger.debug('\t\tChickensRepository : updateChicken()');
 
         //TODO: Replace dhicken in DB
         
@@ -83,7 +85,7 @@ export class ChickensRepository {
     //deleteChicken
 
     static deleteChicken = (id) => {
-        console.log('\t\tChickensRepository : deleteChicken()');
+        logger.debug('\t\tChickensRepository : deleteChicken()');
 
         //TODO: Delete chicken from DB
         const originalsize = CHICKENS.length; // This will store the original size of the list before deleting the chicken
