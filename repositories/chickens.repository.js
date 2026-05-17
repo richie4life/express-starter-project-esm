@@ -61,6 +61,39 @@ export class ChickensRepository {
 
     //updateChicken
 
+    static updateChicken = (id, updateChicken) => {
+        console.log('\t\tChickensRepository : updateChicken()');
+
+        //TODO: Replace dhicken in DB
+        
+        const chicken = CHICKENS.find(chicken => chicken.id === id); // This will find the existing chicken with the same id from the list
+
+        if (!chicken) {
+            return null; // This will return null if the chicken with the given id is not found in the list
+        }
+
+        Object.keys(updateChicken).forEach(key => {
+            chicken[key] = updateChicken[key]; // This will update the existing chicken with the new values from the updateChicken object
+        });
+
+
+        return chicken; // This will return the updated chicken
+    }
+
     //deleteChicken
 
+    static deleteChicken = (id) => {
+        console.log('\t\tChickensRepository : deleteChicken()');
+
+        //TODO: Delete chicken from DB
+        const originalsize = CHICKENS.length; // This will store the original size of the list before deleting the chicken
+        CHICKENS = CHICKENS.filter(chicken => chicken.id !== id); // This will remove the existing chicken with the same id from the list
+
+        if (CHICKENS.length === originalsize) {
+            return false; // This will return false if the chicken with the given id is not found in the list and therefore not deleted
+        }
+        return true; // This will return true if the chicken was successfully deleted
+    }
+
 }
+        

@@ -45,6 +45,34 @@ export class ChickensController {
 
     //updateChicken
 
-    //deleteChicken
+    static updateChicken = (req, res) => {
+        const id = req.params.id;
+        console.log(`ChickensController : updateChicken(${id})`);
 
-}
+        const result = ChickensServices.updateChicken(id,req.body);
+
+        if (!result) {
+            //return res.status(404).json({ message: `Chicken with id ${id} not found` });
+            res.sendStatus(404);
+            return;
+        }
+
+        res.status(200).json(result);
+    };
+
+    //deleteChicken
+    static deleteChicken = (req, res) => {
+        const id = req.params.id;
+        console.log(`ChickensController : deleteChicken(${id})`);
+
+        const result = ChickensServices.deleteChicken(id);
+        if (!result) {
+            //return res.status(404).json({ message: `Chicken with id ${id} not found` });
+            res.sendStatus(404);
+            return;
+        }
+
+        res.sendStatus(200);
+    };
+};
+
