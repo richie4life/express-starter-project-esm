@@ -1,4 +1,5 @@
 import { createLogger, format, transports } from 'winston';
+import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, label, printf } = format;
 
 const level = 'debug';
@@ -21,7 +22,14 @@ export const logger = createLogger({
   ),
   transports: [
     new transports.Console(),
-    // new transports.File({ filename: 'winston-output.log' })
+    // new transports.File({ filename: 'chickens-api.log' })
+    new DailyRotateFile({
+      filename: '%DATE%-chickens-api.log',
+      datePattern: 'YYYY-MM-DD-HH-mm',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d'
+    })
   ]
 });
 
