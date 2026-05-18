@@ -1,18 +1,15 @@
 import express from 'express';
 import { ChickensController } from './controllers/chickens.controller.js';
 import { logger } from './utils/logger.js';
+import { chickenRouter } from './routes/chickens.routes.js';
+
 const app = express();
 const port = 3000;
 
 app.use(express.json()); // this is a middleware that parses the body of the request and makes it available in req.body
+app.use('/api/v1/chickens', chickenRouter); // this is a middleware that routes the request to the appropriate controller based on the URL and the HTTP method
 
 
-app.get('/api/v1/chickens', ChickensController.getChickens);
-app.get('/api/v1/chickens/:id', ChickensController.getChickenById);
-app.post('/api/v1/chickens', ChickensController.createChicken);
-app.put('/api/v1/chickens/:id', ChickensController.replaceChicken);
-app.patch('/api/v1/chickens/:id', ChickensController.updateChicken);
-app.delete('/api/v1/chickens/:id', ChickensController.deleteChicken);
 
 
 // app.listen(port, () => {
