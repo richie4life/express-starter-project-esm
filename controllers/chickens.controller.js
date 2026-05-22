@@ -5,11 +5,16 @@ import { logger } from '../utils/logger.js';
 export class ChickensController {
     static getChickens = (req, res) => {
         logger.debug('ChickensController : getChickens()');
+        
+        // fake an error to test the error handler middleware
+        //throw new Error("boom");  
 
         const result = ChickensServices.getChickens();
         res.status(200).json(result);
 
     };
+
+    
 
     //getChickenById
 
