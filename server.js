@@ -16,7 +16,7 @@ app.use(chickenAgeMiddleware); // this is a middleware that checks the age of th
 app.use('/api/v1/chickens', chickenRouter); // this is a middleware that routes the request to the appropriate controller based on the URL and the HTTP method
 
 // Error handler middleware should be the last middleware added to the app, so that it can catch any errors that occur in the previous middlewares and controllers
-//app.use(errorHandlerMiddleware); // this is a middleware that handles errors that occur in the application and sends a response with a status code of 500 and a message indicating that an internal error occurred
+app.use(errorHandlerMiddleware); // this is a middleware that handles errors that occur in the application and sends a response with a status code of 500 and a message indicating that an internal error occurred
 
 
 
