@@ -3,7 +3,8 @@ import express from 'express';
 import { chickenRouter } from './routes/chickens.routes.js';
 import { logger } from './utils/logger.js';
 import { chickenAgeMiddleware } from './middleware/chickenAge.middleware.js';
-//import { errorHandlerMiddleware } from './middleware/errorHandler.middleware.js';
+import { errorHandlerMiddleware } from './middleware/errorHandler.middleware.js';
+import { database } from './utils/database.js';
 
 const app = express();
 const port = 3000;
@@ -19,7 +20,14 @@ app.use('/api/v1/chickens', chickenRouter); // this is a middleware that routes 
 app.use(errorHandlerMiddleware); // this is a middleware that handles errors that occur in the application and sends a response with a status code of 500 and a message indicating that an internal error occurred
 
 
-
+const config = {
+  appName: 'ChickensAPI',
+  database: 'arca',
+  url: 'mongodb://127.0.0.1:27017',
+  minPoolSize: 2,
+  maxPoolSize: 10
+};
+await database.setup(config);
 
 // app.listen(port, () => {
 //   console.log(`Example app listening at http://localhost:${port}`);

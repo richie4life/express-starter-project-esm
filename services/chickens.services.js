@@ -32,7 +32,7 @@ export class ChickensServices {
 
         //  TODO: Do not let the client update the id of the chicken, we should use the existing id of the chicken to update it
         replaceChicken.id = id; // This will ensure that the id of the chicken is not changed when we replace it
-        return ChickensRepository.replaceChicken(id,replaceChicken); // This will call the replaceChicken method in the repository to update the chicken
+        return ChickensRepository.replaceChicken(id, replaceChicken); // This will call the replaceChicken method in the repository to update the chicken
     };
 
     //updateChicken
@@ -42,7 +42,7 @@ export class ChickensServices {
 
         //  TODO: Do not let the client update the id of the chicken, we should use the existing id of the chicken to update it
         updateChicken.id = id; // This will ensure that the id of the chicken is not changed when we update it
-        return ChickensRepository.updateChicken(id,updateChicken); // This will call the updateChicken method in the repository to update the chicken
+        return ChickensRepository.updateChicken(id, updateChicken); // This will call the updateChicken method in the repository to update the chicken
     };
 
     //deleteChicken
@@ -55,6 +55,6 @@ export class ChickensServices {
     };
 
 
-    };
+};
 
 

@@ -5,7 +5,7 @@ export const chickenAgeMiddleware = (req, res, next) => {
 
     const age = req.body?.age;
 
-    if(age === undefined || age === null) {
+    if (age === undefined || age === null) {
         logger.warn('chickenAgeMiddleware : no age property, calling next()');
         next();
         return;
@@ -17,22 +17,22 @@ export const chickenAgeMiddleware = (req, res, next) => {
     //     return;
     // }
 
-    
+
     logger.info(`chickenAgeMiddleware : req.body.age ${age}`);
 
     //Validation
     if (typeof age !== 'number') {
-        res.status(400).json({ 
-            error: 'age property must be a number' 
+        res.status(400).json({
+            error: 'age property must be a number'
         });
-        
+
     }
 
-    
 
 
 
-    if (age < 1) { 
+
+    if (age < 1) {
         req.body.ageDescription = 'chick';
     } else if (age >= 1 && age < 3) {
         req.body.ageDescription = 'teen';
@@ -40,13 +40,13 @@ export const chickenAgeMiddleware = (req, res, next) => {
         req.body.ageDescription = 'adult';
     } else if (age >= 4) {
         req.body.ageDescription = 'old';
-    } 
+    }
 
-    
+
     logger.info(`chickenAgeMiddleware : labeled chicken with age ${age} as  ageDescription ${req.body.ageDescription}`);
 
     next();
     return;
 
-   
+
 };

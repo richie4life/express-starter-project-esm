@@ -3,13 +3,10 @@ import { logger } from '../utils/logger.js';
 
 
 export class ChickensController {
-    static getChickens = (req, res) => {
+    static getChickens = async (req, res, next) => {
         logger.debug('ChickensController : getChickens()');
-        
-        // fake an error to test the error handler middleware
-        //throw new Error("boom");  
 
-        const result = ChickensServices.getChickens();
+        const result = await ChickensServices.getChickens();
         res.status(200).json(result);
 
     };
@@ -18,11 +15,11 @@ export class ChickensController {
 
     //getChickenById
 
-    static getChickenById = (req, res) => {
+    static getChickenById = async(req, res) => {
         const id = req.params.id;
         logger.debug(`HELLO: ChickensController : getChickenById(${id})`);
 
-        const result = ChickensServices.getChickenById(id);
+        const result = await ChickensServices.getChickenById(id);
         if (!result) {
             return res.status(404).json({ message: `Chicken with id ${id} not found` });
         }
@@ -32,11 +29,11 @@ export class ChickensController {
 
     //createChicken
 
-    static createChicken = (req, res) => {
+    static createChicken = async(req, res) => {
         logger.debug('ChickensController : createChicken()');
 
-        const result = ChickensServices.createChicken(req.body);
-        res.status(200).json(result);
+        const result = await ChickensServices.createChicken(req.body);
+        res.status(201).json(result);
     };
 
     //replaceChicken
