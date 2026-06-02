@@ -38,21 +38,26 @@ export class ChickensController {
 
     //replaceChicken
 
-    static replaceChicken = (req, res) => {
+    static replaceChicken = async(req, res) => {
         const id = req.params.id;
         logger.debug(`ChickensController : replaceChicken(${id})`);
 
-        const result = ChickensServices.replaceChicken(id,req.body);
+        const result = await ChickensServices.replaceChicken(id,req.body);
+        if (!result) {
+            //return res.status(404).json({ message: `Chicken with id ${id} not found` });
+            res.sendStatus(404);
+            return;
+        }
         res.status(200).json(result);
     };
 
     //updateChicken
 
-    static updateChicken = (req, res) => {
+    static updateChicken = async(req, res) => {
         const id = req.params.id;
         logger.debug(`ChickensController : updateChicken(${id})`);
 
-        const result = ChickensServices.updateChicken(id,req.body);
+        const result = await ChickensServices.updateChicken(id,req.body);
 
         if (!result) {
             //return res.status(404).json({ message: `Chicken with id ${id} not found` });
@@ -64,18 +69,19 @@ export class ChickensController {
     };
 
     //deleteChicken
-    static deleteChicken = (req, res) => {
+    static deleteChicken = async(req, res) => {
         const id = req.params.id;
         logger.debug(`ChickensController : deleteChicken(${id})`);
 
-        const result = ChickensServices.deleteChicken(id);
+        const result = await ChickensServices.deleteChicken(id);
+
         if (!result) {
             //return res.status(404).json({ message: `Chicken with id ${id} not found` });
             res.sendStatus(404);
             return;
         }
 
-        res.sendStatus(200);
+        res.sendStatus(204);
     };
 };
 
