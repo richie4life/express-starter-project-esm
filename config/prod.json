@@ -1,0 +1,8 @@
+{
+    "logLevel": "warn",
+    "mongo": {
+        "url": "mongodb://my-prod-mongo-cluster:27017",
+        "minPoolSize": 5,
+        "maxPoolSize": 10
+    }
+}

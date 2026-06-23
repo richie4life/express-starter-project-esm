@@ -1,0 +1,8 @@
+{
+    "logLevel": "info",
+    "mongo": {
+        "url": "mongodb://my-test-mongo-cluster:27017",
+        "minPoolSize": 10,
+        "maxPoolSize": 15
+    }
+}
