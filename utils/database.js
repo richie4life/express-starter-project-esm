@@ -7,7 +7,7 @@ class Database {
   constructor() { }
 
   setup = async (config) => {
-  console.log(config);
+
     this.client = new MongoClient(config.url, {
       appName: config.appName,
       minPoolSize: config.minPoolSize,
