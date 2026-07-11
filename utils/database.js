@@ -7,7 +7,7 @@ class Database {
   constructor() { }
 
   setup = async (config) => {
-
+    // process.env['MONGO_USERNAME']
     this.client = new MongoClient(config.url, {
       appName: config.appName,
       minPoolSize: config.minPoolSize,

@@ -11,11 +11,11 @@ export class ChickensController {
 
     };
 
-    
+
 
     //getChickenById
 
-    static getChickenById = async(req, res) => {
+    static getChickenById = async (req, res) => {
         const id = req.params.id;
         logger.debug(`HELLO: ChickensController : getChickenById(${id})`);
 
@@ -29,20 +29,23 @@ export class ChickensController {
 
     //createChicken
 
-    static createChicken = async(req, res) => {
+    static createChicken = async (req, res) => { // Introduce a 5 secs delay
         logger.debug('ChickensController : createChicken()');
+        
+        // multer adds "req.file"
+        console.log(JSON.stringify(req.file, null, 2))
+            const result = await ChickensServices.createChicken(req.body);
+            res.status(201).json(result);
 
-        const result = await ChickensServices.createChicken(req.body);
-        res.status(201).json(result);
     };
 
     //replaceChicken
 
-    static replaceChicken = async(req, res) => {
+    static replaceChicken = async (req, res) => {
         const id = req.params.id;
         logger.debug(`ChickensController : replaceChicken(${id})`);
 
-        const result = await ChickensServices.replaceChicken(id,req.body);
+        const result = await ChickensServices.replaceChicken(id, req.body);
         if (!result) {
             //return res.status(404).json({ message: `Chicken with id ${id} not found` });
             res.sendStatus(404);
@@ -53,11 +56,11 @@ export class ChickensController {
 
     //updateChicken
 
-    static updateChicken = async(req, res) => {
+    static updateChicken = async (req, res) => {
         const id = req.params.id;
         logger.debug(`ChickensController : updateChicken(${id})`);
 
-        const result = await ChickensServices.updateChicken(id,req.body);
+        const result = await ChickensServices.updateChicken(id, req.body);
 
         if (!result) {
             //return res.status(404).json({ message: `Chicken with id ${id} not found` });
@@ -69,7 +72,7 @@ export class ChickensController {
     };
 
     //deleteChicken
-    static deleteChicken = async(req, res) => {
+    static deleteChicken = async (req, res) => {
         const id = req.params.id;
         logger.debug(`ChickensController : deleteChicken(${id})`);
 

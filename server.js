@@ -15,6 +15,7 @@ const port = 3000;
 app.use(express.json()); // this is a middleware that parses the body of the request and makes it available in req.body
 //TODO: make more precise on URL 
 // app.use(chickenAgeMiddleware); // this is a middleware that checks the age of the chicken and adds an ageDescription property to the request body based on the age of the chicken
+
 app.use('/api/v1/chickens', chickenRouter); // this is a middleware that routes the request to the appropriate controller based on the URL and the HTTP method
 
 // Error handler middleware should be the last middleware added to the app, so that it can catch any errors that occur in the previous middlewares and controllers
