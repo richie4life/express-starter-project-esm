@@ -3,6 +3,10 @@ import { database } from '../utils/database.js';
 import { logger } from '../utils/logger.js';
 
 export class ChickensRepository {
+/**
+ * 
+ * @returns - An array of chicken objects
+ */
     static getChickens = () => {
         logger.debug('\t\tChickensRepository : getChickens()');
 
@@ -17,6 +21,13 @@ export class ChickensRepository {
     }
 
     //getChickenById
+
+    /**
+     * getChickenById - Fetch one document from 
+     * Mongo that has an id property that matches the "id" parameter
+     * @param {String} id - the UUID of a particular document
+     * @returns {Object | null} - An object representing a single chicken
+     */
 
     static getChickenById = (id) => {
         logger.debug(`\t\tChickensRepository : getChickenById(${id})`);

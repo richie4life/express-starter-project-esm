@@ -1,4 +1,5 @@
 import { ChickensServices } from '../services/chickens.services.js';
+import { Constants } from '../utils/constants.js';
 import { logger } from '../utils/logger.js';
 
 
@@ -28,14 +29,30 @@ export class ChickensController {
     };
 
     //createChicken
+/**
+ * getChickens - Controller functions for the /api/v1/chickens 
+ * route that fetches and array of chickens from the db.
+ * @param {Request} req - The express.js Request
+ * @param {Response} res - The express.js Response
+ * @param {*} next - The next middleware
+ */
 
-    static createChicken = async (req, res) => { // Introduce a 5 secs delay
+    static createChicken = async (req, res, next) => { // Introduce a 5 secs delay
         logger.debug('ChickensController : createChicken()');
-        
+
         // multer adds "req.file"
-        console.log(JSON.stringify(req.file, null, 2))
-            const result = await ChickensServices.createChicken(req.body);
-            res.status(201).json(result);
+        // console.log(`originalname = ${req.file.originalname}`);
+        if (req.file?.filename) {
+            req.body.imageUrl = `${Constants.IMAGE_STATIC_PATH}${req.file.filename}`;
+        }
+
+        if (req.body?.weight) {
+            req.body.weight = Number(req.body.weight) || 0;
+        }
+
+
+        const result = await ChickensServices.createChicken(req.body);
+        res.status(201).json(result);
 
     };
 

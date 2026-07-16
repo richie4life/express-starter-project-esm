@@ -2,7 +2,7 @@ import multer from 'multer';
 import express from 'express';
 import { ChickensController } from '../controllers/chickens.controller.js';
 import { chickenAgeMiddleware } from '../middleware/chickenAge.middleware.js';
-import {destination, filename } from '../utils/utils.js';
+import { destination, filename } from '../utils/utils.js';
 
 const multerStorage = multer.diskStorage({
     destination,
